@@ -11,8 +11,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("button.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("JavaFX Control: Button");
+        primaryStage.setScene(new Scene(root, 300, 300));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
