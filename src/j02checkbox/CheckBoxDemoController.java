@@ -30,7 +30,8 @@ public class CheckBoxDemoController {
     private HBox selectArea;
     private CheckBox cbLinux, cbMac, cbWindows;
     private Label resultLabel;
-    private Button button;
+    private Button submitButton;
+    private Button selectAllButton;
 
     @FXML
     public void initialize() {
@@ -44,27 +45,40 @@ public class CheckBoxDemoController {
         cbWindows = new CheckBox("Windows");
 
         // construct Button object with text
-        button = new Button("Submit");
+        submitButton = new Button("Submit");
+        selectAllButton = new Button("Select All");
 
         // set event on mouse clicked
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        submitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 showResult();
+            }
+        });
+        selectAllButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (selectAllButton.getText().equals("Select All")) {
+                    selectAllOptions(true);
+                    selectAllButton.setText("Unselect All");
+                } else {
+                    selectAllOptions(false);
+                    selectAllButton.setText("Select All");
+                }
             }
         });
 
         selectArea = new HBox();
 
         // add all 3 checkboxes into HBox `selectArea`
-        selectArea.getChildren().addAll(cbLinux, cbWindows, cbMac);
+        selectArea.getChildren().addAll(cbLinux, cbWindows, cbMac, selectAllButton);
         selectArea.setAlignment(Pos.CENTER);
 
         resultLabel = new Label("OS used: <none>");
 
         container.getChildren().add(new Text("Which OS have you ever used?"));
         container.getChildren().add(selectArea);
-        container.getChildren().add(button);
+        container.getChildren().add(submitButton);
         container.getChildren().add(resultLabel);
     }
 
@@ -95,5 +109,11 @@ public class CheckBoxDemoController {
         } else {
             resultLabel.setText("OS used: " + result);
         }
+    }
+
+    private void selectAllOptions(boolean selected) {
+        cbLinux.setSelected(selected);
+        cbMac.setSelected(selected);
+        cbWindows.setSelected(selected);
     }
 }
