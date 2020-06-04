@@ -20,3 +20,6 @@
 
 #### j05combobox
 ![ComboBox](../media/j05combobox.png?raw=true)
+
+#### j06slider
+![Slider](../media/j06slider.png?raw=true)
